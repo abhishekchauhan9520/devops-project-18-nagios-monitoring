@@ -1,0 +1,18 @@
+services:
+  nagios:
+    image: jasonrivers/nagios:latest
+    container_name: nagios_core
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nagios/nagios.cfg:/opt/nagios/etc/nagios.cfg:ro
+      - ./nagios/objects:/opt/nagios/etc/objects:ro
+      - ./plugins:/opt/nagios/libexec/custom:ro
+    restart: unless-stopped
+
+  nrpe-host:
+    image: sameersbn/nagios-nrpe:latest
+    container_name: nagios_nrpe
+    volumes:
+      - ./nrpe/nrpe.cfg:/etc/nagios/nrpe.cfg:ro
+    restart: unless-stopped
