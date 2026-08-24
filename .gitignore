@@ -1,0 +1,6 @@
+nagios/var/*
+*.log
+*.pid
+.DS_Store
+.vscode/
+.idea/
